@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.js"></script>
+    <script type="text/javascript" src="js/level-selector.min.js"></script>
+<!--    <script type="text/javascript" src="js/clappr-playback-rate-plugin.min.js"></script>-->
+    <style>
+        /* Fix the player container to take up 100% width and to calculate its height based on its children. */
+        [data-player] {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        /* Fix the video container to take up 100% width and to calculate its height based on its children. */
+        [data-player] .container[data-container] {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* Fix the media-control element to take up the entire size of the player. */
+        [data-player] .media-control[data-media-control] {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Fix the video element to take up 100% width and to calculate its height based on its natural aspect ratio. */
+        [data-player] video {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="player"></div>
+<script>
+  var player = new Clappr.Player({
+    source: "http://localhost:8080/live/hello.m3u8",
+    plugins: [LevelSelector],
+    // autoPlay: true,
+    // disableCanAutoPlay: true,
+    width: '100%',
+    height: 'auto',
+    // preload: 'auto',
+    //width: '100%',
+    // height: '100%',
+    playback: {
+      // preload: 'all',
+      controls: true,
+      hlsjsConfig: {
+        // maxMaxBufferLength: 1,
+      },
+    },
+    hideMediaControl: false,
+    poster: 'http://placekitten.com/1080/720',
+  });
+  player.attachTo(document.getElementById('player'));
+</script>
+<a href="?">Refresh</a>
+</body>
+</html>
